@@ -18,7 +18,7 @@ $result = $collection->find();
 		<table>
 			<tr>
 				<td>Nis</td>
-				<td><input type="text" name="nis"></td>
+				<td><input type="text" name="nis" value="3103116"></td>
 			</tr>
 			<tr>
 				<td>Nama</td>
@@ -26,7 +26,12 @@ $result = $collection->find();
 			</tr>
 			<tr>
 				<td>Kelas</td>
-				<td><input type="text" name="class"></td>
+				<td><select name="class">
+					<option value="XII RPL 1">XII RPL 1</option>
+					<option value="XII RPL 2">XII RPL 2</option>
+					<option value="XII RPL 3">XII RPL 3</option>
+					<option value="XII RPL 4">XII RPL 4</option>
+				</select></td>
 			</tr>
 			<tr>
 				<td>Mapel</td>
@@ -67,12 +72,12 @@ $result = $collection->find();
         echo "<td>".$res['nis']."</td>";
         echo "<td>".$res['nama']."</td>";    
         echo "<td>".$res['kelas']."</td>";  
-        echo "<td>".$res['mapel.PK3']."</td>";
-        echo "<td>".$res['mapel.PK5']."</td>";
-        echo "<td>".$res['mapel.PK8']."</td>";  
+        print_r("<td>".$res['mapel']['PK3']."</td>");
+        print_r("<td>".$res['mapel']['PK5']."</td>");
+        print_r("<td>".$res['mapel']['PK8']."</td>");
         echo "<td>
         <a href=\"edit.php?id=$res[_id]\">Edit</a>
-        <a href=\"delete.php?id=$res[_id]\" onClick=\"return confirm('Are you sure you want to delete?')\">Delete</a></td>";        
+        <a href=\"delet.php?id=$res[_id]\" onClick=\"return confirm('Are you sure you want to delete?')\">Delete</a></td>";
     }
     ?>
     </table>
@@ -86,10 +91,14 @@ $insertOneResult = $collection->insertOne([
     'nis' => $_POST['nis'],
     'nama' => $_POST['name'],
     'kelas' => $_POST['class'],
-    'mapel.pk3' => $_POST['pk3'],
-    'mapel.pk5' => $_POST['pk5'],
-    'mapel.pk8' => $_POST['pk8'],
-]);}
+    'mapel' => array(
+    	'PK3' => $_POST['pk3'],
+    	'PK5' => $_POST['pk5'],
+    	'PK8' => $_POST['pk8']
+    				)
+]);
+header("Refresh:0");
+}
 
 
 
