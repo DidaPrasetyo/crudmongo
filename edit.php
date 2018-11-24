@@ -31,7 +31,7 @@ $pk8 = $result['mapel']['PK8'];
 	<a href="index.php">Home</a>
 	<br/><br/>
 
-	<form act method="POST">
+	<form method="POST">
 		<table>
 			<tr>
 				<td>Nis</td>
@@ -100,9 +100,9 @@ $pk8 = $result['mapel']['PK8'];
 					</form>
 				</body>
 
-				<?php if(isset($_POST['submit']))
+				<?php if(isset($_POST['Submit']))
 				{    
-					$id = $_POST['id'];
+					$id = $_GET['id'];
 					$user = array (
 						'nis' => $_POST['nis'],
 						'nama' => $_POST['name'],
